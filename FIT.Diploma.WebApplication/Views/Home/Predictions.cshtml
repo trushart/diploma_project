@@ -1,0 +1,151 @@
+﻿@model FIT.Diploma.WebApplication.Models.PredictionsModel
+
+@{
+    ViewBag.Title = "Predictions";
+}
+
+@if (string.IsNullOrEmpty(Model.Error))
+{
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-xs-4 control-label" for="league-select">Selected League: </label>
+
+            <div class="col-xs-8">
+                <div class="pos-rel">
+                    <select class="form-control" id="league-select" data-placeholder="Choose a League...">
+                        @if (Model != null && Model.Leagues != null)
+                        {
+                            foreach (var item in Model.Leagues)
+                            {
+                                var selected = "";
+                                if (item.LeagueId == Model.SelectedLeague.LeagueId)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@item.LeagueId" @selected>@item.LeagueName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-4 control-label" for="season-select">Selected Season: </label>
+
+            <div class="col-xs-8">
+                <div class="pos-rel">
+                    <select class="form-control" id="season-select" data-placeholder="Choose a Season...">
+                        @if (Model != null && Model.Seasons != null)
+                        {
+                            foreach (var item in Model.Seasons)
+                            {
+                                var selected = "";
+                                var endYear = item.StartYear + 1;
+                                if (item.LeagueSeasonId == Model.SelectedSeason.LeagueSeasonId)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@item.LeagueSeasonId" @selected>@item.StartYear-@endYear</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-4 control-label" for="predictions-select">Predictions: </label>
+
+            <div class="col-xs-8">
+                <div class="pos-rel">
+                    <select class="form-control" id="predictions-select" data-placeholder="Choose a Predictions...">
+                        @if (Model != null)
+                        {
+                            foreach (var tuple in Model.GetAllPredictionsTypes())
+                            {
+                                var selected = "";
+                                if (tuple.Key == (int)Model.SelectedPredictionsType)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@tuple.Key" @selected>@tuple.Value</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div>
+        <h3 class="red">An error occurred. Probably REST service is unavailable.</h3>
+        <h4>Error: @Model.Error</h4>
+    </div>
+}
+
+
+@if (Model.Predictions != null)
+{
+    var season = Model.SelectedSeason.StartYear;
+    var seasonTxt = $"{season} - {season + 1}";
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-12 pull-left">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="10%" max-width="200" />
+                        <col width="25%" />
+                        <col width="25%" />
+                        <col width="6%" max-width="120" />
+                        <col width="20%" />
+                        <col width="10%" />
+                        <col width="4%" max-width="80" />
+                    </colgroup>
+                    <thead>
+                        <tr class="table-header">
+                            <td colspan="1"></td>
+                            <td colspan="6">Predictions for season @seasonTxt</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var gamecount = 1;
+                            foreach (var prediction in Model.Predictions)
+                            {
+                                var game = prediction.Game;
+                                var parity = gamecount++ % 2 == 0 ? "even" : "odd";
+                                var homeClass = game.Result == FIT.Diploma.Shared.DataAccess.Dto.GameResultDto.HomeWin ? "bold" : "";
+                                var awayClass = game.Result == FIT.Diploma.Shared.DataAccess.Dto.GameResultDto.AwayWin ? "bold" : "";
+                                var score = game.Result == 0 ? "" : $"{game.HomeTeamGoals} : {game.AwayTeamGoals}";
+                                var isFinished = prediction.IsFinished ? "Finished" : "Not finished";
+                                var isSucceed = prediction.IsSucceed.HasValue ? "" : "N/A";
+                                if (prediction.IsSucceed.HasValue)
+                                {
+                                    isSucceed = prediction.IsSucceed.Value ? "Win" : "Loss";
+                                }
+                                <tr class="@parity" id="game_@game.GameId">
+                                    <td>@game.Date.ToString("dd-MM-yyyy hh:mm")</td>
+                                    <td class="@homeClass" tema-id="@game.HomeTeamId">@game.HomeTeamName</td>
+                                    <td class="@awayClass" tema-id="@game.AwayTeamId">@game.AwayTeamName</td>
+                                    <td>@score</td>
+                                    <td>@prediction.PredictionOption</td>
+                                    <td>@isFinished</td>
+                                    <td>@isSucceed</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>   
+}
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/predictions")
+}
+

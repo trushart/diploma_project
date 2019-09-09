@@ -1,0 +1,140 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.logo-class {
+    background: url(../img/logo_fit.jpg) no-repeat;
+    background-size: 100% 100%;
+    display: block;
+    width: 350px;
+    height: 70px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.navigator-menu > li > a {
+    line-height: 40px;
+    font-size: 17px;
+}
+
+.label-form {
+    height: 34px;
+}
+
+.table-header {
+    background-color: #495c78;
+    color: #fff;
+}
+
+.round {
+    text-align: left;
+    padding: 0 0 0 10px;
+    background-color: #cacaca;
+    border: 1px solid #bbb !important;
+}
+
+tr.even {
+    background: #f0f0f0;
+}
+
+td.green {
+    background-color: #98FB98;
+}
+
+.red {
+    color: #dd5a43 !important;
+}
+
+.blue {
+    color: #478fca !important;
+}
+
+.form-horizontal > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: gray;
+}
+
+/*Sizes*/
+.bigger-130 {
+    font-size: 130% !important;
+}
+/*Sizes*/
+
+/*Buttons*/
+.btn-info,
+.btn-info:focus {
+    background-color: #6fb3e0 !important;
+    border-color: #6fb3e0;
+}
+
+.btn-info:hover,
+.btn-info:active,
+.open > .btn-info.dropdown-toggle {
+    background-color: #4f99c6 !important;
+    border-color: #6fb3e0;
+}
+
+.btn-info.no-border:hover,
+.btn-info.no-border:active {
+    border-color: #4f99c6;
+}
+
+.btn-info.no-hover:hover,
+.btn-info.no-hover:active {
+    background-color: #6fb3e0 !important;
+}
+
+.btn-info.active {
+    background-color: #5fa6d3 !important;
+    border-color: #4396cb;
+}
+
+.btn-info.no-border.active {
+    background-color: #539fd0 !important;
+    border-color: #539fd0;
+}
+
+.btn-info.disabled,
+.btn-info[disabled],
+fieldset[disabled] .btn-info,
+.btn-info.disabled:hover,
+.btn-info[disabled]:hover,
+fieldset[disabled] .btn-info:hover,
+.btn-info.disabled:focus,
+.btn-info[disabled]:focus,
+fieldset[disabled] .btn-info:focus,
+.btn-info.disabled:active,
+.btn-info[disabled]:active,
+fieldset[disabled] .btn-info:active,
+.btn-info.disabled.active,
+.btn-info[disabled].active,
+fieldset[disabled] .btn-info.active {
+    background-color: #6fb3e0 !important;
+    border-color: #6fb3e0;
+}

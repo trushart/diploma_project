@@ -1,0 +1,118 @@
+﻿@model FIT.Diploma.WebApplication.Models.LeagueInformationModel
+
+@{
+    ViewBag.Title = "League Information";
+
+
+    var currentRoundModel = new FIT.Diploma.WebApplication.Models.RoundGamesModel
+    {
+        Games = Model.CurrentRoundGames,
+        Round = Model.CurrentRound,
+        TableHeader = "Current Round Games"
+    };
+
+    var previousRoundModel = new FIT.Diploma.WebApplication.Models.RoundGamesModel
+    {
+        Games = Model.PreviousRoundGames,
+        Round = Model.PreviousRound,
+        TableHeader = "Previous Round Games"
+    };
+
+    if (Model?.CurrentRound?.RoundId == Model.PreviousRound.RoundId)
+    {
+        previousRoundModel.Games = null;
+        previousRoundModel.Round = null;
+    }
+
+    var standingTable = new FIT.Diploma.WebApplication.Models.StandingTableModel
+    {
+        League = Model.SelectedLeague,
+        Season = Model.SelectedSeason,
+        StandingTable = Model.StandingTable
+    };
+}
+
+@if (string.IsNullOrEmpty(Model.Error))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-xs-4 control-label" for="league-select">Selected League: </label>
+
+            <div class="col-xs-8">
+                <div class="pos-rel">
+                    <select class="form-control" id="league-select" data-placeholder="Choose a League...">
+                        @if (Model != null && Model.Leagues != null)
+                        {
+                            foreach (var item in Model.Leagues)
+                            {
+                                var selected = "";
+                                if (item.LeagueId == Model.SelectedLeague.LeagueId)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@item.LeagueId" @selected>@item.LeagueName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-4 control-label" for="season-select">Selected Season: </label>
+
+            <div class="col-xs-8">
+                <div class="pos-rel">
+                    <select class="form-control" id="season-select" data-placeholder="Choose a Season...">
+                        @if (Model != null && Model.Seasons != null)
+                        {
+                            foreach (var item in Model.Seasons)
+                            {
+                                var selected = "";
+                                var endYear = item.StartYear + 1;
+                                if (item.LeagueSeasonId == Model.SelectedSeason.LeagueSeasonId)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@item.LeagueSeasonId" @selected>@item.StartYear-@endYear</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        @Html.Partial("_RoundGames", @currentRoundModel)
+
+        @Html.Partial("_RoundGames", @previousRoundModel)
+
+        @Html.Partial("_SeasonTable", @standingTable)
+
+    </div>
+
+
+    <div>
+        <a id="link-to-game-stats" href="#game-stats-modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" hidden></a>
+    </div>
+    <div id="game-stats-div"></div>
+
+    <div>
+        <a id="link-to-season-stats" href="#season-stats-modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" hidden></a>
+    </div>
+    <div id="season-stats-div">
+        @Html.Partial("_SeasonStats")
+    </div>
+}
+else
+{
+    <div>
+        <h3 class="red">An error occurred. Probably REST service is unavailable.</h3>
+        <h4>Error: @Model.Error</h4>
+    </div>
+}
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/leagueinfo")
+}

@@ -1,0 +1,260 @@
+﻿@model FIT.Diploma.WebApplication.Models.SearchingToolModel
+
+@{
+    ViewBag.Title = "SearchingTool";
+
+    string minDate = new DateTime(1992, 1, 1).ToString("dd.MM.yyyy");
+    string maxDate = DateTime.Now.ToString("dd.MM.yyyy");
+
+    string startDate = DateTime.Now.AddYears(-2).ToString("dd.MM.yyyy");
+    string endDate = DateTime.Now.AddDays(-1).ToString("dd.MM.yyyy");
+
+    var resultsModel = new FIT.Diploma.WebApplication.Models.SearchingToolResults
+    {
+        Games = null,
+        GamesNumber = -1,
+        StreaksNumber = 1
+    };
+
+    var conditionsModel = new FIT.Diploma.WebApplication.Models.SearchingToolConditionsModel
+    {
+    };
+}
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <span style="font-weight:bold">Time range</span>
+        <hr />
+
+        <label class="col-xs-2 control-label" for="range-select">Range type: </label>
+        <div class="col-xs-2">
+            <div class="pos-rel">
+                <select class="form-control" id="range-select" data-placeholder="Choose a Range type...">
+                    @if (Model != null && Model.RangeTypes != null)
+                    {
+                        var firstOption = true;
+                        foreach (var item in Model.RangeTypes)
+                        {
+                            var selected = firstOption? "selected" : "";
+                            firstOption = false;
+                            <option value="@item.RangeTypeId" @selected>@item.RangeTypeName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        @if (Model?.RangeTypes.FirstOrDefault().RangeTypeId == FIT.Diploma.WebApplication.Models.RangeTypeId.DateTime)
+        {
+            <label class="col-xs-2 control-label" for="date-range-picker">Dates range: </label>
+
+            <div class="col-xs-6">
+                <input type="text" id="date-range-picker" name="daterange" data-minDate="@minDate" data-maxDate="@maxDate" value="@startDate - @endDate"/>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <span style="font-weight:bold">Conditions</span>
+        <hr />
+
+        <div id="conditions-table">
+            @Html.Partial("_SearchingToolConditions", @conditionsModel)
+        </div>
+        
+
+        <button id="add-condition" class="btn col-xs-offset-3 pull-right" type="button">
+            <i class="fa fa-plus bigger-110"></i>
+            Add Condition
+        </button>
+    </div>
+
+    <div class="form-group">
+        <span style="font-weight:bold">Result format</span>
+        <hr />
+
+        <label class="col-xs-2 control-label" for="result-format-select">Choose format: </label>
+        <div class="col-xs-2">
+            <div class="pos-rel">
+                <select class="form-control" id="result-format-select" data-placeholder="Choose a Result format...">
+                    @if (Model != null && Model.ResultFormats != null)
+                    {
+                        var firstOption = true;
+                        foreach (var item in Model.ResultFormats)
+                        {
+                            var formatId = (int)item.ResultFormatId;
+                            var selected = firstOption ? "selected" : "";
+                            firstOption = false;
+                            <option value="@formatId" @selected>@item.ResultFormatName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-12">
+            <button id="search-button" class="btn btn-info col-xs-offset-3 pull-right" type="button">
+                <i class="fa fa-search bigger-130"></i>
+                Search
+            </button>
+        </div>
+    </div>
+
+    <hr />
+</form>
+
+<div id="searching-tool-result">
+    @Html.Partial("_SearchingToolResult", resultsModel)
+</div>
+
+
+
+
+
+@* Modal form *@
+<div>
+    <a id="link-to-add-condition" href="#my-modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" hidden></a>
+</div>
+
+<div id="my-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Condition settings</h3>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="team-selected">Select Team </label>
+                        <div class="col-sm-6">
+                            <div class="pos-rel">
+                                <select class="chosen-select form-control" id="team-selected" data-placeholder="Choose a team...">
+                                    <option value="-1" selected>#N/A</option>
+                                    <option value="FC Barcelona">FC Barcelona</option>
+                                    <option value="Real Madrid">Real Madrid</option>
+                                    <option value="Sevilla">Sevilla</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="condition-type">Type of condition </label>
+                        <div class="col-sm-6">
+                            <div class="pos-rel">
+                                <select class="chosen-select form-control" id="condition-type" data-placeholder="Choose a type of condition...">
+                                    @if (Model != null && Model.ConditionTypes != null)
+                                    {
+                                        var firstOption = true;
+                                        foreach (var condType in Model.ConditionTypes)
+                                        {
+                                            var condTypeId = (int)condType.ConditionTypeId;
+                                            var selected = firstOption ? "selected" : "";
+                                            firstOption = false;
+                                            <option value="@condTypeId" @selected>@condType.GetConditionType()</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="total-type">Type of total </label>
+                        <div class="col-sm-6">
+                            <div class="pos-rel">
+                                <select class="chosen-select form-control" id="total-type" data-placeholder="Choose a type of total...">
+                                    @if (Model != null && Model.TotalTypes != null)
+                                    {
+                                        var firstOption = true;
+                                        foreach (var totalType in Model.TotalTypes)
+                                        {
+                                            var totalTypeId = (int)totalType.TotalType;
+                                            var selected = firstOption ? "selected" : "";
+                                            firstOption = false;
+                                            <option value="@totalTypeId" @selected>@totalType.GetTotalType()</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="total-number">Total number</label>
+                        <div class="col-sm-6">
+                            <div class="pos-rel">
+                                <select class="chosen-select form-control" id="total-number" data-placeholder="Choose a number of total...">
+                                    @{
+                                        for(int i=1; i < 6; i++)
+                                        {
+                                            <option value="@i">@i.5</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="game-place-selected">Game Place </label>
+                        <div class="col-sm-6">
+                            <div class="pos-rel">
+                                <select class="chosen-select form-control" id="game-place-selected" data-placeholder="Choose a game place...">
+                                    <option value="0">#N/A</option>
+                                    <option value="1">Home</option>
+                                    <option value="2">Away</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="game-result-selected">Game Result </label>
+                        <div class="col-sm-6">
+                            <div class="pos-rel">
+                                <select class="chosen-select form-control" id="game-result-selected" data-placeholder="Choose a game result...">
+                                    <option value="0" selected>#N/A</option>
+                                    <option value="1">Team#1 win</option>
+                                    <option value="2">Draw</option>
+                                    <option value="3">Team#2 win</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="btts-yes">BTTS: </label>
+                        <div class="col-sm-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="btts-yes" type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+                <button class="btn btn-sm btn-success" onclick="AddCondition()" data-dismiss="modal">
+                    OK
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/searchingtool")
+}

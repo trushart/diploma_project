@@ -1,0 +1,65 @@
+﻿@model FIT.Diploma.WebApplication.Models.SearchingToolResults
+
+<form class="form-horizontal" role="form">
+    @if (Model != null)
+    {
+
+        if (Model.StreaksNumber != -1)
+        {
+            <div class="form-group">
+                <label class="col-xs-2 control-label pull-left" for="streak-number">Streaks Number: </label>
+                <div class="col-xs-2 control-label">
+                    <input readonly="" type="text" class="form-control center" id="streak-number" value="@Model.StreaksNumber">
+                </div>
+            </div>
+        }
+        if (Model.GamesNumber != -1)
+        {
+            <div class="form-group">
+                <label class="col-xs-2 control-label pull-left" for="games-number">Games Number: </label>
+                <div class="col-xs-2 control-label">
+                    <input readonly="" type="text" class="form-control center" id="games-number" value="@Model.GamesNumber">
+                </div>
+            </div>
+        }
+        if (Model.Games != null)
+        {
+            <div class="form-group">
+                <div class="col-sm-12 pull-left">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="13%" max-width="200" />
+                            <col width="40%" />
+                            <col width="40%" />
+                            <col width="7%" max-width="120" />
+                        </colgroup>
+                        <thead>
+                            <tr class="table-header">
+                                <td colspan="1"></td>
+                                <td colspan="3">Result Games</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var gamecount = 1;
+                                foreach (var game in Model.Games)
+                                {
+                                    var parity = gamecount++ % 2 == 0 ? "even" : "odd";
+                                    var homeClass = game.Result == FIT.Diploma.Shared.DataAccess.Dto.GameResultDto.HomeWin ? "bold" : "";
+                                    var awayClass = game.Result == FIT.Diploma.Shared.DataAccess.Dto.GameResultDto.AwayWin ? "bold" : "";
+                                    var score = game.Result == 0 ? "" : $"{game.HomeTeamGoals} : {game.AwayTeamGoals}";
+                                    <tr class="@parity" id="game_@game.GameId">
+                                        <td>@game.Date.ToString("dd-MM-yyyy hh:mm")</td>
+                                        <td class="@homeClass" tema-id="@game.HomeTeamId">@game.HomeTeamName</td>
+                                        <td class="@awayClass" tema-id="@game.AwayTeamId">@game.AwayTeamName</td>
+                                        <td>@score</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            }
+        }
+</form>

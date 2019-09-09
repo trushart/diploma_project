@@ -1,0 +1,52 @@
+﻿@model FIT.Diploma.WebApplication.Models.StandingTableModel
+@{ 
+    var leagueName = Model.League.LeagueName;
+    var seasonYear = Model.Season.StartYear;
+    var season = $"{seasonYear} - {seasonYear+1}";
+}
+
+@if(Model.Season != null && Model.StandingTable != null)
+{
+    <div class="form-group">
+        <div class="col-sm-12 pull-left">
+            <table class="table table-bordered">
+                <caption>
+                    <h3>League Tables - @leagueName  @season</h3>
+                </caption>
+                <thead>
+                    <tr class="table-header">
+                        <th><abbr title="Position">Pos</abbr></th>
+                        <th>Team</th>
+                        <th><abbr title="Game Played">GP</abbr></th>
+                        <th><abbr title="Won">W</abbr></th>
+                        <th><abbr title="Drawn">D</abbr></th>
+                        <th><abbr title="Lost">L</abbr></th>
+                        <th><abbr title="Goals for">GF</abbr></th>
+                        <th><abbr title="Goals against">GA</abbr></th>
+                        <th><abbr title="Goal difference">GD</abbr></th>
+                        <th><abbr title="Points">Pts</abbr></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var team in Model.StandingTable.Teams)
+                    {
+                        var goalsDifference = team.GoalsFor - team.GoalsAgainst;
+                        <tr>
+                            <td>@team.TablePlace</td>
+                            <td team-id="@team.FootballTeamId">@team.FootballTeamName</td>
+                            <td>@team.GamePlayed</td>
+                            <td>@team.WinsCount</td>
+                            <td>@team.DrawsCount</td>
+                            <td>@team.LossesCount</td>
+                            <td>@team.GoalsFor</td>
+                            <td>@team.GoalsAgainst</td>
+                            <td>@goalsDifference</td>
+                            <td class="green">@team.Points</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+

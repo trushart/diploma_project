@@ -1,0 +1,67 @@
+<div class="marketboard-event-group__item--event">	<div class="marketboard-event-without-header">
+						<div>
+								<div class="marketboard-event-without-header__market-time">9:00 PM</div>
+								<div class="marketboard-event-without-header__detail-buttons">
+									
+	<div class="mb-event-details-buttons">
+		<span class="mb-event-details-buttons__button mb-event-details-buttons__button--more-markets ">
+				<a title="110 further bets" href="/en/sports/events/4/16108/6745806/betting/getafe-malaga" class="mb-event-details-buttons__button-link">
+					<span>+</span><span>110</span>
+				</a>
+		</span><span class="mb-event-details-buttons__button mb-event-details-buttons__button--statistics ">
+			    <a title="Statistics" href="http://stats.betradar.com/s4/?clientid=25&amp;matchid=12055432&amp;language=en" rel="popup" data-popup-params="width=800, height=875, resizable=1, toolbar=0, status=1, scrollbars=1" target="statistics" class="mb-event-details-buttons__button-link">
+					
+<i class="icon-glyph_stats_filled"></i>
+				</a>
+		</span>
+	</div>
+
+								</div>
+								<div class="marketboard-event-without-header__markets-container">
+									<table class="marketboard-event-without-header__markets-list">
+
+		<tbody><tr class="marketboard-options-row marketboard-options-row--3-way">
+
+
+
+
+		<td class="mb-option-button rounded mb-option-button--3-way" data-option="4/16108/6745806/236641544/733859811" title="" data-action="/en/betslip/betslipv2/add?optionId=4%2F16108%2F6745806%2F236641544%2F733859811&amp;odds=1.70&amp;source=LeagueView%2fMarketboard">
+				<div class="mb-option-button__favourite">
+					
+
+<i class="icon-glyph_star favourite-icon " data-player="4|Getafe"></i>
+				</div>
+				<button type="button" class="no-uniform mb-option-button__button mb-option-button__button--favourited">
+					<div class="mb-option-button__option-name mb-option-button__option-name--odds-4">Getafe</div>
+					<div class="mb-option-button__option-odds ">1.70</div>
+				</button>
+		</td>
+
+
+		<td class="mb-option-button rounded mb-option-button--3-way-draw" data-option="4/16108/6745806/236641544/733859812" title="" data-action="/en/betslip/betslipv2/add?optionId=4%2F16108%2F6745806%2F236641544%2F733859812&amp;odds=3.50&amp;source=LeagueView%2fMarketboard">
+				<button type="button" class="no-uniform mb-option-button__button mb-option-button__button--">
+					<div class="mb-option-button__option-name mb-option-button__option-name--odds-4">X</div>
+					<div class="mb-option-button__option-odds ">3.50</div>
+				</button>
+		</td>
+
+
+		<td class="mb-option-button rounded mb-option-button--3-way" data-option="4/16108/6745806/236641544/733859813" title="" data-action="/en/betslip/betslipv2/add?optionId=4%2F16108%2F6745806%2F236641544%2F733859813&amp;odds=5.00&amp;source=LeagueView%2fMarketboard">
+				<div class="mb-option-button__favourite">
+					
+
+<i class="icon-glyph_star favourite-icon " data-player="4|Malaga"></i>
+				</div>
+				<button type="button" class="no-uniform mb-option-button__button mb-option-button__button--favourited">
+					<div class="mb-option-button__option-name mb-option-button__option-name--odds-4">Malaga</div>
+					<div class="mb-option-button__option-odds ">5.00</div>
+				</button>
+		</td>
+		</tr>
+									</tbody></table>
+								</div>
+
+						</div>
+
+	</div>
+</div>

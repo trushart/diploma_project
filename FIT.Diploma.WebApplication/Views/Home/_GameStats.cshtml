@@ -1,0 +1,91 @@
+﻿@model FIT.Diploma.WebApplication.Models.GameStatsModel
+
+<div id="game-stats-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @if (Model != null && Model.GameInfo != null && Model.HeadToHead != null)
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="smaller lighter blue no-margin">Game @Model.GameInfo.HomeTeamName-@Model.GameInfo.AwayTeamName statistics:</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-sm-12 pull-left">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>@Model.GameInfo.HomeTeamName</th>
+                                    <th>@Model.GameInfo.AwayTeamName</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Game Score</td>
+                                    <td>@Model.GameInfo.HomeTeamGoals</td>
+                                    <td>@Model.GameInfo.AwayTeamGoals</td>
+                                </tr>
+                                <tr>
+                                    <td>Half-Time Score</td>
+                                    <td>@Model.GameInfo.HalfTimeHomeGoals</td>
+                                    <td>@Model.GameInfo.HalfTimeAwayGoals</td>
+                                </tr>
+                                <tr>
+                                    <td>Shots</td>
+                                    <td>@Model.GameInfo.HomeTeamShots</td>
+                                    <td>@Model.GameInfo.AwayTeamShots</td>
+                                </tr>
+                                <tr>
+                                    <td>Shots on target</td>
+                                    <td>@Model.GameInfo.HomeTeamTargetShots</td>
+                                    <td>@Model.GameInfo.AwayTeamTargetShots</td>
+                                </tr>
+                                <tr>
+                                    <td>Corners</td>
+                                    <td>@Model.GameInfo.HomeTeamCorners</td>
+                                    <td>@Model.GameInfo.AwayTeamCorners</td>
+                                </tr>
+                                <tr>
+                                    <td>Fouls</td>
+                                    <td>@Model.GameInfo.HomeTeamFouls</td>
+                                    <td>@Model.GameInfo.AwayTeamFouls</td>
+                                </tr>
+                                <tr>
+                                    <td>Offsides</td>
+                                    <td>@Model.GameInfo.HomeTeamOffsides</td>
+                                    <td>@Model.GameInfo.AwayTeamOffsides</td>
+                                </tr>
+                                <tr>
+                                    <td>Yellow Cards</td>
+                                    <td>@Model.GameInfo.HomeTeamYCards</td>
+                                    <td>@Model.GameInfo.AwayTeamYCards</td>
+                                </tr>
+                                <tr>
+                                    <td>Red Cards</td>
+                                    <td>@Model.GameInfo.HomeTeamRedCards</td>
+                                    <td>@Model.GameInfo.AwayTeamRedCards</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>                    
+                </div>
+            }
+            else
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="smaller lighter red no-margin">Game data is not available!!!</h3>
+                </div>
+            }
+
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-success" data-dismiss="modal">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

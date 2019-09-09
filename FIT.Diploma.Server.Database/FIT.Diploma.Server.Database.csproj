@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1713E105-1297-4D05-AE27-3AA8EC90D143}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FIT.Diploma.Server.Database</RootNamespace>
+    <AssemblyName>FIT.Diploma.Server.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalyzerResults\AverageRoundStats.cs" />
+    <Compile Include="AnalyzerResults\BookmakerOddsStats.cs" />
+    <Compile Include="AnalyzerResults\FootballTeamForm.cs" />
+    <Compile Include="AnalyzerResults\HeadToHeadStats.cs" />
+    <Compile Include="AnalyzerResults\Prediction.cs" />
+    <Compile Include="AnalyzerResults\SeasonStats.cs" />
+    <Compile Include="BookmakerOddsData\Bookmaker.cs" />
+    <Compile Include="BookmakerOddsData\BookmakerOdds.cs" />
+    <Compile Include="Helper\Log.cs" />
+    <Compile Include="LeagueData\FootballLeague.cs" />
+    <Compile Include="LeagueData\FootballTeam.cs" />
+    <Compile Include="LeagueData\Game.cs" />
+    <Compile Include="LeagueData\GameRosourceId.cs" />
+    <Compile Include="LeagueData\GameStats.cs" />
+    <Compile Include="LeagueData\LeagueSeason.cs" />
+    <Compile Include="LeagueData\LeagueSeasonReferees.cs" />
+    <Compile Include="LeagueData\LeagueSeasonTeams.cs" />
+    <Compile Include="LeagueData\Location.cs" />
+    <Compile Include="LeagueData\Referee.cs" />
+    <Compile Include="LeagueData\SeasonRound.cs" />
+    <Compile Include="Migrations\201709031520295_Initial.cs" />
+    <Compile Include="Migrations\201709031520295_Initial.Designer.cs">
+      <DependentUpon>201709031520295_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709031948563_UpdateResourceProcessingStatus.cs" />
+    <Compile Include="Migrations\201709031948563_UpdateResourceProcessingStatus.Designer.cs">
+      <DependentUpon>201709031948563_UpdateResourceProcessingStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709101652550_Added Log table.cs" />
+    <Compile Include="Migrations\201709101652550_Added Log table.Designer.cs">
+      <DependentUpon>201709101652550_Added Log table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709282120485_Added StandingTableAnalysis.cs" />
+    <Compile Include="Migrations\201709282120485_Added StandingTableAnalysis.Designer.cs">
+      <DependentUpon>201709282120485_Added StandingTableAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709282231116_Changed LeagueSeasonTeam.cs" />
+    <Compile Include="Migrations\201709282231116_Changed LeagueSeasonTeam.Designer.cs">
+      <DependentUpon>201709282231116_Changed LeagueSeasonTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709282306418_Changed FootballTeam.cs" />
+    <Compile Include="Migrations\201709282306418_Changed FootballTeam.Designer.cs">
+      <DependentUpon>201709282306418_Changed FootballTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709292333568_Added StandingTableAnalysis_AnalyzedGames.cs" />
+    <Compile Include="Migrations\201709292333568_Added StandingTableAnalysis_AnalyzedGames.Designer.cs">
+      <DependentUpon>201709292333568_Added StandingTableAnalysis_AnalyzedGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709292345240_Edit StandingTableAnalysis_AnalyzedGames.cs" />
+    <Compile Include="Migrations\201709292345240_Edit StandingTableAnalysis_AnalyzedGames.Designer.cs">
+      <DependentUpon>201709292345240_Edit StandingTableAnalysis_AnalyzedGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712112213399_Add scheduler data models.cs" />
+    <Compile Include="Migrations\201712112213399_Add scheduler data models.Designer.cs">
+      <DependentUpon>201712112213399_Add scheduler data models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712132308195_Nullable properties.cs" />
+    <Compile Include="Migrations\201712132308195_Nullable properties.Designer.cs">
+      <DependentUpon>201712132308195_Nullable properties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712132311093_Nullable properties#2.cs" />
+    <Compile Include="Migrations\201712132311093_Nullable properties#2.Designer.cs">
+      <DependentUpon>201712132311093_Nullable properties#2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712132359184_Update SchedulerTask.cs" />
+    <Compile Include="Migrations\201712132359184_Update SchedulerTask.Designer.cs">
+      <DependentUpon>201712132359184_Update SchedulerTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712152135120_Update SchedulerTask#1.cs" />
+    <Compile Include="Migrations\201712152135120_Update SchedulerTask#1.Designer.cs">
+      <DependentUpon>201712152135120_Update SchedulerTask#1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712212042089_Add SeasonStats.cs" />
+    <Compile Include="Migrations\201712212042089_Add SeasonStats.Designer.cs">
+      <DependentUpon>201712212042089_Add SeasonStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712212153098_Add SeaasonRounds.cs" />
+    <Compile Include="Migrations\201712212153098_Add SeaasonRounds.Designer.cs">
+      <DependentUpon>201712212153098_Add SeaasonRounds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221937599_Add H2HStats.cs" />
+    <Compile Include="Migrations\201712221937599_Add H2HStats.Designer.cs">
+      <DependentUpon>201712221937599_Add H2HStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712231719343_Add TeamForm.cs" />
+    <Compile Include="Migrations\201712231719343_Add TeamForm.Designer.cs">
+      <DependentUpon>201712231719343_Add TeamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712231810236_Add BookmakerOddsStats.cs" />
+    <Compile Include="Migrations\201712231810236_Add BookmakerOddsStats.Designer.cs">
+      <DependentUpon>201712231810236_Add BookmakerOddsStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712241929573_Add AverageRoundStats.cs" />
+    <Compile Include="Migrations\201712241929573_Add AverageRoundStats.Designer.cs">
+      <DependentUpon>201712241929573_Add AverageRoundStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801102003170_Add Predictions.cs" />
+    <Compile Include="Migrations\201801102003170_Add Predictions.Designer.cs">
+      <DependentUpon>201801102003170_Add Predictions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SchedulerData\SchedulerTask.cs" />
+    <Compile Include="SchedulerData\TaskExecutor.cs" />
+    <Compile Include="SchedulerData\TriggerRule.cs" />
+    <Compile Include="ServerDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemData\AverageRoundStats_AnalyzedSeasons.cs" />
+    <Compile Include="SystemData\BookmakerOddsStats_AnalyzedGames.cs" />
+    <Compile Include="SystemData\HeadToHeadStats_AnalyzedGames.cs" />
+    <Compile Include="SystemData\Log.cs" />
+    <Compile Include="SystemData\ResourceConfiguration.cs" />
+    <Compile Include="SystemData\ResourceProcessingStatus.cs" />
+    <Compile Include="SystemData\SeasonRound_AnalyzedGames.cs" />
+    <Compile Include="SystemData\SeasonStats_AnalyzedGames.cs" />
+    <Compile Include="SystemData\StandingTableAnalysis.cs" />
+    <Compile Include="SystemData\StandingTableAnalysis_AnalyzedGames.cs" />
+    <Compile Include="SystemData\TeamForm_AnalyzedSeasons.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709031520295_Initial.resx">
+      <DependentUpon>201709031520295_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709031948563_UpdateResourceProcessingStatus.resx">
+      <DependentUpon>201709031948563_UpdateResourceProcessingStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709101652550_Added Log table.resx">
+      <DependentUpon>201709101652550_Added Log table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709282120485_Added StandingTableAnalysis.resx">
+      <DependentUpon>201709282120485_Added StandingTableAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709282231116_Changed LeagueSeasonTeam.resx">
+      <DependentUpon>201709282231116_Changed LeagueSeasonTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709282306418_Changed FootballTeam.resx">
+      <DependentUpon>201709282306418_Changed FootballTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709292333568_Added StandingTableAnalysis_AnalyzedGames.resx">
+      <DependentUpon>201709292333568_Added StandingTableAnalysis_AnalyzedGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709292345240_Edit StandingTableAnalysis_AnalyzedGames.resx">
+      <DependentUpon>201709292345240_Edit StandingTableAnalysis_AnalyzedGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712112213399_Add scheduler data models.resx">
+      <DependentUpon>201712112213399_Add scheduler data models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712132308195_Nullable properties.resx">
+      <DependentUpon>201712132308195_Nullable properties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712132311093_Nullable properties#2.resx">
+      <DependentUpon>201712132311093_Nullable properties#2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712132359184_Update SchedulerTask.resx">
+      <DependentUpon>201712132359184_Update SchedulerTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712152135120_Update SchedulerTask#1.resx">
+      <DependentUpon>201712152135120_Update SchedulerTask#1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712212042089_Add SeasonStats.resx">
+      <DependentUpon>201712212042089_Add SeasonStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712212153098_Add SeaasonRounds.resx">
+      <DependentUpon>201712212153098_Add SeaasonRounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221937599_Add H2HStats.resx">
+      <DependentUpon>201712221937599_Add H2HStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712231719343_Add TeamForm.resx">
+      <DependentUpon>201712231719343_Add TeamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712231810236_Add BookmakerOddsStats.resx">
+      <DependentUpon>201712231810236_Add BookmakerOddsStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712241929573_Add AverageRoundStats.resx">
+      <DependentUpon>201712241929573_Add AverageRoundStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801102003170_Add Predictions.resx">
+      <DependentUpon>201801102003170_Add Predictions.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

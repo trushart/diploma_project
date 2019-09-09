@@ -1,0 +1,66 @@
+﻿@model FIT.Diploma.WebApplication.Models.SearchingToolConditionsModel
+
+<table id="dynamic-table" class="table table-striped">
+    <colgroup>
+        <col width="35%" max-width="600" />
+        <col width="51%" />
+        <col width="7%" max-width="80" />
+        <col width="7%" max-width="80" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Conditions != null)
+        {
+            var count = 0;
+            foreach (var cond in Model.Conditions)
+            {
+                var condTypeId = (int)cond.ConditionTypeId;
+                var totalTypeId = (int)cond.TotalType;
+                var condNumber = count++;
+                var condValue = cond.SelectedCondition;
+                if (cond.ConditionTypeId == FIT.Diploma.WebApplication.Models.ConditionTypeId.GameTotal ||
+                    cond.ConditionTypeId == FIT.Diploma.WebApplication.Models.ConditionTypeId.TeamTotal)
+                {
+                    var totalType = cond.TotalType == FIT.Diploma.WebApplication.Models.TotalType.Over
+                        ? "Total Over: " : "Total Under: ";
+                    condValue = totalType + condValue;
+                }
+
+                <tr data-condTypeId="@condTypeId" data-condNumber="@condNumber" data-total-type="@totalTypeId" data-selected-value="@cond.SelectedCondition">
+                    <td>
+                        @cond.GetConditionType()
+                    </td>
+                    <td>
+                        @condValue
+                    </td>
+                    <td>
+                        <a class="green disabled" href="#" title="Not implemented">
+                            <i class="fa fa-pencil bigger-130"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="red delete" href="#" onclick="DeleteCondition(@condNumber)">
+                            <i class="fa fa-trash-o bigger-130"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        <tr data-condNumber="-1">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
